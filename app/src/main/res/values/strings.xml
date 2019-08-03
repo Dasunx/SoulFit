@@ -12,5 +12,16 @@
     <string name="Day">TODAY</string>
     <string name="ShowCal">658/1500</string>
     <string name="Caloriestxt">CALORIES</string>
->>>>>>> Stashed changes
+    <string name="Breakfasttxt">Breakfast</string>
+    <string name="MorningSnackstxt">Morning Snacks</string>
+    <string name="Lunchtxt">Lunch</string>
+    <string name="Eveningtxt">Evening Snacks</string>
+    <string name="Dinnertxt">Dnner</string>
+    <string name="BreakfastShow">185</string>
+    <string name="MsnackSHow">95</string>
+    <string name="Lunchshow">159</string>
+    <string name="EveningShow">120</string>
+    <string name="DinnerShow">185</string>
+
+    >>>>>>> Stashed changes
 </resources>
