@@ -44,5 +44,4 @@
         android:text="Next"
         android:textColor="@color/main_green" />
 
-
 </RelativeLayout>

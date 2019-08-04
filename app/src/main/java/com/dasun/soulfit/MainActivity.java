@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickLogin(View v){
+        Intent myIntent = new Intent(this, CallorieCalc.class);
 
+        startActivity(myIntent);
     }
 }

@@ -5,6 +5,7 @@
             <stroke android:color="@color/login_form_details" android:width="2dp"/>
             <corners android:radius="2dp"></corners>
         </shape>
+
     </item>
     <item>
         <shape>
