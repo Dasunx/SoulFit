@@ -11,7 +11,12 @@
     <color name="login_form_details_medium">#66ffffff</color>
     <color name="main_green">#39b052</color>
     <color name="white">#ffffff</color>
+<<<<<<< HEAD
     <color name="wt_accent">#ff4081</color>
     <color name="grey">#cccccc</color>
+=======
+    <color name="accent">#ff4081</color>
+    <color name="grey">#ffffff</color>
+>>>>>>> master
 
 </resources>

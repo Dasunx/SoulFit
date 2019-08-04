@@ -1,5 +1,6 @@
 package com.dasun.soulfit;
 
+<<<<<<< HEAD
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -21,10 +22,18 @@ public class Welcome extends AppCompatActivity {
     private Button mBackBtn;
 
     private int mCurrentPage;
+=======
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class Welcome extends AppCompatActivity {
+
+>>>>>>> master
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+<<<<<<< HEAD
 
         mSlideView = (ViewPager) findViewById(R.id.slideViewPager);
         mDotLayer = (LinearLayout) findViewById(R.id.dotsLayout);
@@ -123,5 +132,7 @@ public class Welcome extends AppCompatActivity {
     public void passLogin(){
         Intent myInt= new Intent(this,MainActivity.class);
         startActivity(myInt);
+=======
+>>>>>>> master
     }
 }
