@@ -17,11 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
+
         <activity android:name=".Welcome" />
-=======
-        <activity android:name=".Welcome"></activity>
->>>>>>> master
+
     </application>
 
 </manifest>
