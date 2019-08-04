@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">SoulFit</string>
-<<<<<<< Updated upstream
-=======
     <string name="title_activity_menu">Menu</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -22,6 +20,10 @@
     <string name="Lunchshow">159</string>
     <string name="EveningShow">120</string>
     <string name="DinnerShow">185</string>
+    <string name="Food1">"Fresh Milk with sugar"</string>
+    <string name="Food2">Omlets</string>
+    <string name="Showcal1">85</string>
+    <string name="Showcal2">100</string>
 
-    >>>>>>> Stashed changes
+
 </resources>
