@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     android:background="@drawable/background"
     tools:context=".Welcome">
 
@@ -42,5 +43,9 @@
         android:background="@android:color/transparent"
         android:text="Next"
         android:textColor="@color/main_green" />
+=======
+    tools:context=".Welcome">
+
+>>>>>>> master
 
 </RelativeLayout>

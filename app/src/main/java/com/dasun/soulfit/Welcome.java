@@ -1,6 +1,5 @@
 package com.dasun.soulfit;
 
-
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +21,6 @@ public class Welcome extends AppCompatActivity {
     private Button mBackBtn;
 
     private int mCurrentPage;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
