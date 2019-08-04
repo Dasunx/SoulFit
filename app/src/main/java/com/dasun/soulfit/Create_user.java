@@ -14,7 +14,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
-public class Create_User extends AppCompatActivity {
+class Create_User extends AppCompatActivity {
     private DrawerLayout drawer;
 
     Spinner spinner;
@@ -37,14 +37,14 @@ public class Create_User extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,
-                R.string.Open navigation drawer, R.string.Close navigation drawer);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         spinner = (Spinner) findViewById(R.id.spinner1);
-        adapter = ArrayAdapter.createFromResource(this,R.array.GenderNames,android.R.layout.simple_spinner_item);
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
