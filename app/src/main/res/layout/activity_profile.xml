@@ -211,7 +211,7 @@
                     android:textColor="#000000"
                     android:fontFamily="sans-serif-light"
                     android:textSize="18sp"
-                    android:text="+94-711129404"
+                    android:text="+94711129404"
                     />
                 <View
                     android:layout_width="match_parent"

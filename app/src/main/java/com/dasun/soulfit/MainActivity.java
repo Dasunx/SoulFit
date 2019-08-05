@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickLogin(View v){
-
+        Intent my = new Intent(this,CallorieCalc.class);
+        startActivity(my);
     }
 }
