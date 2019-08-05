@@ -7,6 +7,21 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+    <string name="cr_workouts_txtView">Workouts</string>
+    <string name="cr_done_txtView">DONE</string>
+    <string name="cr_done_count">+7</string>
+    <string name="cr_burned_txtView">BURNED</string>
+    <string name="cr_plusSign_btn">+</string>
+    <string name="cr_2_mins_txtView">2 mins</string>
+    <string name="cr_100Cals_txtView">100 Cal</string>
+    <string name="cr_workoutName_txtView">Jumping Rope</string>
+    <string name="cr_calBurnedCount_card_txtView">+789</string>
+    <string name="cr_Workout_Name">Workout Name</string>
+    <string name="cr_workout_cal_hint">Calories</string>
+    <string name="cr_workout_mins_hint">Minutes</string>
+    <string name="cr_add_workout_btn">ADD</string>
+
     <string name="Day">TODAY</string>
     <string name="ShowCal">658/1500</string>
     <string name="Caloriestxt">CALORIES</string>
@@ -24,6 +39,7 @@
     <string name="Food2">Omlets</string>
     <string name="Showcal1">85</string>
     <string name="Showcal2">100</string>
+
 
 
 </resources>
