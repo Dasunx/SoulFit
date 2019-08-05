@@ -14,7 +14,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
-class Create_User extends AppCompatActivity {
+public class Create_user extends AppCompatActivity {
     private DrawerLayout drawer;
 
     Spinner spinner;
