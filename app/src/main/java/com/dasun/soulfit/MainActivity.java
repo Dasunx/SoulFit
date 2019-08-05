@@ -5,16 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import android.widget.Button;
-
-public class MainActivity extends AppCompatActivity {
-    Button btn1;
-
-
 public class MainActivity extends AppCompatActivity {
 
     private static int firstTime = 1;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +22,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickLogin(View v){
-        Intent my = new Intent(this,CallorieCalc.class);
+        Intent my = new Intent(this,Workouts.class);
         startActivity(my);
     }
-
 }
