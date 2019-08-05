@@ -14,6 +14,7 @@
 
     <color name="accent">#ff4081</color>
     <color name="grey">#ffffff</color>
-
+    <color name="realgrey">#cccccc</color>
+    <color name="lightgreen">#6DEC88</color>
 
 </resources>

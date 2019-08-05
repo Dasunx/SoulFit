@@ -70,7 +70,7 @@ public class Welcome extends AppCompatActivity {
             mDots[i] = new TextView(this);
             mDots[i].setText(Html.fromHtml("&#8226;"));
             mDots[i].setTextSize(35);
-            mDots[i].setTextColor(getResources().getColor(R.color.grey));
+            mDots[i].setTextColor(getResources().getColor(R.color.realgrey));
 
             mDotLayer.addView(mDots[i]);
         }
