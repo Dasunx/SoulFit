@@ -8,6 +8,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+
     <string name="cr_workouts_txtView">Workouts</string>
     <string name="cr_done_txtView">DONE</string>
     <string name="cr_done_count">+7</string>
