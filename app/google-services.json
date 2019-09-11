@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "719576811471",
+    "firebase_url": "https://soulfit-f30c3.firebaseio.com",
+    "project_id": "soulfit-f30c3",
+    "storage_bucket": "soulfit-f30c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:719576811471:android:393e213fc71237249e74ba",
+        "android_client_info": {
+          "package_name": "com.dasun.soulfit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "719576811471-5jrql7t2ujtcs7oc5su0om429ke2gsea.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dasun.soulfit",
+            "certificate_hash": "54c2a49c9dad468c9da5ea11b09189089038fba4"
+          }
+        },
+        {
+          "client_id": "719576811471-cic7j1lghmujfjf4p66emas9o6dot9t4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7y2ObyRk9iBiDRxHgXzhdKU0G1_vdPTU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "719576811471-cic7j1lghmujfjf4p66emas9o6dot9t4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
