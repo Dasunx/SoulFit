@@ -42,4 +42,13 @@
     <string name="Showcal2">100</string>
 
 
+    <string name="birthday">Date of birth</string>
+    <string name="gender">Gender</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="foot_massage">It\'s oky to estimate, you can update this later</string>
+    <string name="submit">submit</string>
+    <string name="Topic">Let\'s get started!</string>
+
+
 </resources>
