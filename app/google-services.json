@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "719576811471-di5c8uvg4o88b2bkq6k6nt7o0qs63n3q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dasun.soulfit",
+            "certificate_hash": "3ef2695503718d52c60b0f5a4966cbbdce46cc17"
+          }
+        },
+        {
           "client_id": "719576811471-5jrql7t2ujtcs7oc5su0om429ke2gsea.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
