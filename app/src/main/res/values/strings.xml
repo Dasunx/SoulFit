@@ -49,6 +49,8 @@
     <string name="foot_massage">It\'s oky to estimate, you can update this later</string>
     <string name="submit">submit</string>
     <string name="Topic">Let\'s get started!</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
 
 
 </resources>
