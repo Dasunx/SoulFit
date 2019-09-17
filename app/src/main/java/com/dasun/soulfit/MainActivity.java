@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickLogin(View v){
-        Intent my = new Intent(this,Workouts.class);
+        Intent my = new Intent(this, WorkoutsActivity.class);
         startActivity(my);
     }
 }
