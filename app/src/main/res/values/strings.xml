@@ -55,6 +55,8 @@
     <string name="cr_minutes_hint">Minutes</string>
     <string name="cr_calories_hint">Calories</string>
     <string name="cr_create_workout_btn">Create</string>
+    <string name="cr_delete">delete</string>
+    <string name="cr_update">update</string>
 
 
 </resources>

@@ -1,11 +1,13 @@
 package com.dasun.soulfit;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -19,6 +21,7 @@ public class createWorkoutActivity extends AppCompatActivity {
     Button btncreate;
     DatabaseReference df;
     Workout wko;
+    ImageView btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,10 @@ public class createWorkoutActivity extends AppCompatActivity {
         calories=findViewById(R.id.editText_burned_cal);
         btncreate=findViewById(R.id.btn_create);
 
+        btnBack=findViewById(R.id.btnBackImg);
+
         wko =new Workout();
+
 
     }
     private void clearControls(){
@@ -75,14 +81,22 @@ public class createWorkoutActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"only numericals allowed",Toast.LENGTH_SHORT).show();
                 }
             }//======end Error handling assigning
-
+            String id=df.push().getKey();
+            wko.setWorkoutId(id);
             //Insert into DB
-            df.push().setValue(wko);
+            df.child(id).setValue(wko);
+
+
             //Feedback to the user Via Toast
             Toast.makeText(getApplicationContext(),"Workout successfully added.",Toast.LENGTH_SHORT).show();
             //Clearing text fields
             clearControls();
         }
+    }
+
+    public void goBacktoWorkot(View view){
+        Intent back = new Intent(this,WorkoutsActivity.class);
+        startActivity(back);
     }
 
 
