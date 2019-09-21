@@ -22,7 +22,7 @@ public class Workouts extends AppCompatActivity {
     }
 
     public void goBack(View view){
-        Intent my = new Intent(this,CallorieCalc.class);
+        Intent my = new Intent(this,user_create.class);
         startActivity(my);
     }
 
