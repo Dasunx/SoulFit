@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--WorkoutContainer -->
+
+    <ImageView
+        android:id="@+id/imageViewWorkoutContainer"
+        android:layout_width="388dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.03"
+        app:srcCompat="@drawable/rectangle" />
+
+    <TextView
+        android:id="@+id/textViewWorkoutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/cr_workoutName_txtView"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/imageViewWorkoutContainer"
+        app:layout_constraintTop_toTopOf="@+id/imageViewWorkoutContainer" />
+
+    <TextView
+        android:id="@+id/textViewCalorie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/cr_100Cals_txtView"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/imageViewWorkoutContainer"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWorkoutTitle" />
+
+    <TextView
+        android:id="@+id/textViewMinutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/cr_2_mins_txtView"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewWorkoutTitle"
+        app:layout_constraintTop_toTopOf="@+id/imageViewWorkoutContainer" />
+
+    <Button
+        android:id="@+id/btnWorkout_add"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="22dp"
+        android:background="@drawable/btn_circle"
+        android:gravity="center_vertical|center_horizontal"
+        android:onClick="calBurned"
+        android:text="@string/cr_plusSign_btn"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewWorkoutContainer"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewWorkoutContainer" />
+    <!--WorkoutContainer End-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
