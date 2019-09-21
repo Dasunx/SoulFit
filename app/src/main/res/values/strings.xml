@@ -107,4 +107,12 @@
     <string name="or">or</string>
     <string name="forgotpass">Forgot password?</string>
     <string name="login">Login</string>
+    <string name="samplename">Ben shapiro</string>
+    <string name="displayname">Display name</string>
+    <string name="entername">Enter your name</string>
+    <string name="fburl">fb.me/benshapiro</string>
+    <string name="saveProfile">Save</string>
+    <string name="twitter">Twitter</string>
+    <string name="twitterUrl">twitter.com/ben</string>
+
 </resources>
