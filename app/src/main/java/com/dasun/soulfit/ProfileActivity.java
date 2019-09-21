@@ -314,8 +314,7 @@ public class ProfileActivity extends AppCompatActivity{
 
     }
     public void signOut() {
-        mAuth.signOut();
-        Intent myn = new Intent(this,Login.class);
+        Intent myn = new Intent(this,WorkoutsActivity.class);
         startActivity(myn);
     }
 

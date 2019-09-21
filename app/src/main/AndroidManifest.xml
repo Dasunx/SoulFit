@@ -14,6 +14,9 @@
         <activity android:name=".Navigation" />
         <activity android:name=".user_create" />
         <activity android:name=".Workouts" />
+        <activity android:name=".WorkoutsActivity" />
+        <activity android:name=".createWorkoutActivity" />
+
         <activity android:name=".ProfileActivity" />
         <activity android:name=".CallorieCalc" />
         <activity

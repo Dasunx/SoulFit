@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Workouts">
+    tools:context=".WorkoutsActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -61,14 +61,14 @@
         app:layout_constraintStart_toStartOf="@+id/imageViewLeft"
         app:layout_constraintTop_toTopOf="@+id/imageViewLeft" />
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.01" />
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -76,202 +76,10 @@
         app:layout_constraintGuide_percent="0.99" />
     <!--WorkoutContainer -->
 
-    <ImageView
-        android:id="@+id/imageViewWorkoutContainer1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewRight"
-        app:layout_constraintVertical_bias="0.03"
-        app:srcCompat="@drawable/rectangle" />
 
-    <TextView
-        android:id="@+id/textViewWorkout1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/cr_workoutName_txtView"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/imageViewWorkoutContainer1"
-        app:layout_constraintTop_toTopOf="@+id/imageViewWorkoutContainer1" />
-
-    <TextView
-        android:id="@+id/textViewMiniCal1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/cr_100Cals_txtView"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/imageViewWorkoutContainer1"
-        app:layout_constraintTop_toBottomOf="@+id/textViewWorkout1" />
-
-    <TextView
-        android:id="@+id/textViewMins1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/cr_2_mins_txtView"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/textViewWorkout1"
-        app:layout_constraintTop_toTopOf="@+id/imageViewWorkoutContainer1" />
-
-    <Button
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="22dp"
-        android:background="@drawable/btn_circle"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="@string/cr_plusSign_btn"
-        android:textColor="#fff"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewWorkoutContainer1"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewWorkoutContainer1" />
     <!--WorkoutContainer End-->
 
-    <!--WorkoutContainer Copy2-->
-    <ImageView
-        android:id="@+id/imageViewWorkoutContainer2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="110dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewRight"
-        app:layout_constraintVertical_bias="0.03"
-        app:srcCompat="@drawable/rectangle" />
 
-    <TextView
-        android:id="@+id/textViewWorkout2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/cr_workoutName_txtView"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/imageViewWorkoutContainer2"
-        app:layout_constraintTop_toTopOf="@+id/imageViewWorkoutContainer2" />
-
-    <TextView
-        android:id="@+id/textViewMiniCal2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/cr_100Cals_txtView"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/imageViewWorkoutContainer2"
-        app:layout_constraintTop_toBottomOf="@+id/textViewWorkout2" />
-
-    <TextView
-        android:id="@+id/textViewMins2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/cr_2_mins_txtView"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/textViewWorkout2"
-        app:layout_constraintTop_toTopOf="@+id/imageViewWorkoutContainer2" />
-
-    <Button
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="22dp"
-        android:background="@drawable/btn_circle"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="@string/cr_plusSign_btn"
-        android:textColor="#fff"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewWorkoutContainer2"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewWorkoutContainer2" />
-    <!--WorkoutContainer Copy2 end-->
-
-    <!--WorkoutContainer Copy3-->
-    <ImageView
-        android:id="@+id/imageViewWorkoutContainer3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="210dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewRight"
-        app:layout_constraintVertical_bias="0.03"
-        app:srcCompat="@drawable/rectangle" />
-
-    <TextView
-        android:id="@+id/textViewWorkout3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/cr_workoutName_txtView"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/imageViewWorkoutContainer3"
-        app:layout_constraintTop_toTopOf="@+id/imageViewWorkoutContainer3" />
-
-    <TextView
-        android:id="@+id/textViewMiniCal3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/cr_100Cals_txtView"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/imageViewWorkoutContainer3"
-        app:layout_constraintTop_toBottomOf="@+id/textViewWorkout3" />
-
-    <TextView
-        android:id="@+id/textViewMins3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/cr_2_mins_txtView"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/textViewWorkout3"
-        app:layout_constraintTop_toTopOf="@+id/imageViewWorkoutContainer3" />
-
-    <Button
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="22dp"
-        android:background="@drawable/btn_circle"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="@string/cr_plusSign_btn"
-        android:textColor="#fff"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewWorkoutContainer3"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewWorkoutContainer3" />
-    <!--WorkoutContainer Copy3 end-->
 
     <TextView
         android:id="@+id/textViewBurned"
@@ -310,68 +118,24 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageViewRight"
         app:layout_constraintEnd_toEndOf="@+id/imageViewRight" />
 
-    <EditText
-        android:id="@+id/editTextWorkoutName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="8dp"
-        android:ems="8"
-        android:hint="@string/cr_Workout_Name"
-        android:inputType="textPersonName"
-        android:text=""
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewWorkoutContainer3" />
-
-    <EditText
-        android:id="@+id/editTextWorkoutCal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="8dp"
-        android:ems="8"
-        android:hint="@string/cr_workout_cal_hint"
-        android:inputType="textPersonName"
-        android:text=""
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextWorkoutName" />
-
-    <EditText
-        android:id="@+id/editTextWorkoutMins"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="16dp"
-        android:ems="8"
-        android:hint="@string/cr_workout_mins_hint"
-        android:inputType="textPersonName"
-        android:text=""
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewWorkoutContainer3" />
-
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_create"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
         android:background="#4FBE9C"
+        android:onClick="createWorkout"
         android:text="@string/cr_add_workout_btn"
         android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/editTextWorkoutMins" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewWorkoutContainer3"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -380,6 +144,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
+        android:onClick="resetDay"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toEndOf="@+id/textView"
@@ -401,14 +166,27 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_arrow_back_" />
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleViewWorkout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_create"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBurned"
+        app:layout_constraintVertical_bias="0.405"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
