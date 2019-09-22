@@ -22,7 +22,7 @@ public class user_create extends AppCompatActivity {
     Spinner gender;
     EditText height;
     EditText weight;
-    Button submit;
+    Button submit ,up;
 
     DatabaseReference dbCuser;
 
@@ -39,6 +39,8 @@ public class user_create extends AppCompatActivity {
         weight =  (EditText)findViewById(R.id.weight);
 
         submit = (Button) findViewById(R.id.submit);
+        up = findViewById(R.id.UpCrr);
+
 
 
 
@@ -55,6 +57,13 @@ public class user_create extends AppCompatActivity {
 
             }
         });
+        up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(user_create.this,Update_create_User.class));
+            }
+        });
+
     }
     private void newpage(){
         Intent s = new Intent(this,ViweCreateUser.class);
