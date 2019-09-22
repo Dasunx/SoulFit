@@ -26,6 +26,7 @@
                     android:id="@+id/verifyEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="signOut"
                     android:text="Button" />
 
                 <ImageView

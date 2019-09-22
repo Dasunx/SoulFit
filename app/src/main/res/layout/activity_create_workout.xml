@@ -8,11 +8,11 @@
 
     <EditText
         android:id="@+id/editText_workout_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="@string/cr_Workout_Name"
         android:inputType="textPersonName"
@@ -37,11 +37,11 @@
 
     <EditText
         android:id="@+id/editText_minutes"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="72dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="@string/cr_minutes_hint"
         android:inputType="textPersonName"
@@ -51,11 +51,11 @@
 
     <EditText
         android:id="@+id/editText_burned_cal"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="76dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="@string/cr_calories_hint"
         android:inputType="textPersonName"
@@ -100,6 +100,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_burned_cal"
-        app:layout_constraintVertical_bias="0.31" />
+        app:layout_constraintVertical_bias="0.461" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
