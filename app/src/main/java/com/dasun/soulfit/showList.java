@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -48,7 +50,13 @@ public class showList extends AppCompatActivity {
         //action bar and its title
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Your Food List ");
-
+        FirebaseAuth mAuth;
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser userx = mAuth.getCurrentUser();
+       if(userx == null){
+           Intent s = new Intent(this,Login.class);
+           startActivity(s);
+       }
         //init firestore
         db = FirebaseFirestore.getInstance();
 
