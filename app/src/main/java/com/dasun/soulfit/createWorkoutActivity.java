@@ -77,15 +77,15 @@ public class createWorkoutActivity extends AppCompatActivity {
             if(!sCalorie.isEmpty()){
                 try{
                     dCalorie=Double.parseDouble(sCalorie);
-                    //wko.setCalorie(dCalorie);//Assign it to the Workout object
+                    wko.setCalorie(dCalorie);//Assign it to the Workout object
                 }catch (Exception cal){
                     Toast.makeText(getApplicationContext(),"only numericals allowed",Toast.LENGTH_SHORT).show();
                 }
             }//======end Error handling assigning
 
-            double burnedCal=(dMinute*dCalorie*3.5*85)/200;
-            
-            wko.setCalorie(burnedCal);
+            //double burnedCal=(dMinute*dCalorie*3.5*85)/200;
+
+            //wko.setCalorie(burnedCal);
             String id=df.push().getKey();
             wko.setWorkoutId(id);
             //Insert into DB
