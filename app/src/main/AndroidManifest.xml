@@ -9,26 +9,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Register"></activity>
-        <activity android:name=".Login" />
-        <activity android:name=".Navigation" />
-        <activity android:name=".user_create" />
-        <activity android:name=".Workouts" />
-        <activity android:name=".WorkoutsActivity" />
-        <activity android:name=".createWorkoutActivity" />
 
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".CallorieCalc" />
-        <activity
-            android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".showList">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".addFood" />
+        <activity android:name=".ViweCreateUser"></activity>
+        <activity android:name=".Register" />
+        <activity android:name=".Login" />
+        <activity android:name=".Navigation" />
+        <activity android:name=".user_create" />
+        <activity android:name=".Workouts" />
+        <activity android:name=".WorkoutsActivity" />
+        <activity android:name=".createWorkoutActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".CallorieCalc" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
         <activity android:name=".Welcome" />
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
