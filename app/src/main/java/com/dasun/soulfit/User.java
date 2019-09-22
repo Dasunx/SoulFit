@@ -13,7 +13,7 @@ public class User {
     }
 
     public User(String birthday, String gender, String cuserId, String height, String weight) {
-        Birthday = birthday;
+        this.Birthday = birthday;
         this.gender = gender;
         CuserId = cuserId;
         this.height = height;

@@ -19,7 +19,7 @@ public class cUserList extends ArrayAdapter<User> {
 
     public cUserList(Activity context,List<User>cuserList){
 
-        super(context,R.layout.list_layoutc, cuserList);
+        super(context,R.layout.activity_list_layoutc_r, cuserList);
         this.context = context;
         this.cuserList = cuserList;
     }
@@ -28,16 +28,16 @@ public class cUserList extends ArrayAdapter<User> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
-        View listViewItem = inflater.inflate(R.layout.list_layoutc, null,true);
+        View listViewItem = inflater.inflate(R.layout.activity_list_layoutc_r, null,true);
 
-        TextView textViewBirth = (TextView) listViewItem.findViewById(R.id.l1birthday);
+        TextView textViewBirthday = (TextView) listViewItem.findViewById(R.id.l1birthday);
         TextView textViewgender = (TextView) listViewItem.findViewById(R.id.l2gender);
         TextView textViewheight = (TextView) listViewItem.findViewById(R.id.l3height);
         TextView textViewweight = (TextView) listViewItem.findViewById(R.id.l4weight);
 
         User user = cuserList.get(position);
 
-        textViewBirth.setText(user.getBirthday());
+        textViewBirthday.setText(user.getBirthday());
         textViewgender.setText(user.getGender());
         textViewheight.setText(user.getHeight());
         textViewweight.setText(user.getWeight());
