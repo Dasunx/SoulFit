@@ -1,12 +1,19 @@
 package com.dasun.soulfit;
 
+import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,8 +22,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +34,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.IOException;
 
 
 public class ProfileActivity extends AppCompatActivity{
@@ -36,6 +52,7 @@ public class ProfileActivity extends AppCompatActivity{
     Button save;
     Button signout;
     ImageView settings;
+    ImageView profilePhoto;
     LinearLayout weight;
     LinearLayout facebook;
     LinearLayout namesec;
@@ -47,7 +64,12 @@ public class ProfileActivity extends AppCompatActivity{
     ProfileDetail newPro;
     static int key =1;
     TextView primaryMail;
+    static String uri1;
+    private static final int PICK_IMAGE_REQUEST = 234;
+    private Uri filePath;
 
+    //firebase objects
+    private StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +81,8 @@ public class ProfileActivity extends AppCompatActivity{
 
         sp= getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         int detailsAdded;
+
+        storageReference = FirebaseStorage.getInstance().getReference();
 
         SharedPreferences.Editor spEdit= sp.edit();
         spEdit.putInt("mode",1);
@@ -81,8 +105,11 @@ public class ProfileActivity extends AppCompatActivity{
         phoneSec = findViewById(R.id.phoneSection);
         twitterSec = findViewById(R.id.twitterSection);
         primaryMail = findViewById(R.id.profile_desc);
+        profilePhoto = findViewById(R.id.profilePic);
         primaryMail.setText(userx.getEmail().toString());
         newPro = new ProfileDetail();
+
+
 
         if(key==1){
             detailsAdded=1;
@@ -111,7 +138,10 @@ public class ProfileActivity extends AppCompatActivity{
                         String phn=oldPro.getPhone();
                         String fbu=oldPro.getFb();
                         String twitter = oldPro.getTwitter();
+                        String ImageUrl = oldPro.getProPic();
+
                         if(dN !=null){
+                            loadWithGlide();
                             profileName.setText(dN);
                             name.setText(dN);
                         }
@@ -136,6 +166,21 @@ public class ProfileActivity extends AppCompatActivity{
                 }
             });
         }
+
+        profilePhoto.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                longClickImg();
+               return true;
+            }
+        });
+        profilePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                shortClickImg();
+
+            }
+        });
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -308,11 +353,163 @@ public class ProfileActivity extends AppCompatActivity{
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signOut();
+                uploadFile();
             }
         });
-
+        loadWithGlide();
+        loadWithGlide();
     }
+
+    private void showFileChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            filePath = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                profilePhoto.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public void loadWithGlide() {
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        storageRef.child("images/"+mAuth.getCurrentUser().getUid()+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                uri1 = uri.toString();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+        // [START storage_load_with_glide]
+        // Reference to an image file in Cloud Storage
+        Toast.makeText(this,uri1,Toast.LENGTH_LONG).show();
+
+        // ImageView in your Activity
+        // Download directly from StorageReference using Glide
+        // (See MyAppGlideModule for Loader registration)
+        GlideApp.with(this /* context */)
+                .load(uri1)
+                .into(profilePhoto);
+        // [END storage_load_with_glide]
+    }
+
+    public String getFileExtension(Uri uri) {
+        ContentResolver cR = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
+    }
+    private void uploadFile() {
+        //checking if file is available
+        if (filePath != null) {
+            Toast.makeText(this,filePath.toString(),Toast.LENGTH_LONG).show();
+            //displaying progress dialog while image is uploading
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("Uploading");
+            progressDialog.show();
+
+            //getting the storage reference
+            StorageReference sRef = storageReference.child("images/" + mAuth.getCurrentUser().getUid() + "." + getFileExtension(filePath));
+
+            //adding the file to reference
+            sRef.putFile(filePath)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            //dismissing the progress dialog
+                            progressDialog.dismiss();
+
+
+                            //displaying success toast
+                            Toast.makeText(getApplicationContext(), "File Uploaded ", Toast.LENGTH_LONG).show();
+
+                            //creating the upload object to store uploaded image details
+                            ProfileDetail upload = new ProfileDetail();
+                            mDatabase.child("profilePic").setValue(uri1);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            //displaying the upload progress
+                            double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                            progressDialog.setMessage("Uploaded " + ((int) progress) + "%...");
+                        }
+                    });
+        }
+    }
+
+
+    private void shortClickImg() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("");
+        // add a list
+        String[] options = {"Upload Photo"};
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(which==0){
+                    uploadImage();
+                }
+            }
+        });
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void uploadImage() {
+        showFileChooser();
+        uploadFile();
+        loadWithGlide();
+    }
+
+    private void longClickImg() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("");
+        // add a list
+        String[] options = {"Update Photo", "Remove Photo"};
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0: uploadImage();
+                            break;
+                    case 1:
+                        deleteProPic();
+                        break;
+                }
+            }
+        });
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void deleteProPic() {
+    }
+
+
+
     public void signOut() {
         Intent myn = new Intent(this,WorkoutsActivity.class);
         startActivity(myn);
