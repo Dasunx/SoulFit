@@ -374,24 +374,6 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="15dp"
-                        android:orientation="vertical">
-
-
-                        <Button
-                            android:id="@+id/signOutR"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/main_green"
-                            android:text="@string/sign_out"
-                            android:textColor="@color/com_facebook_button_background_color_focused"
-                            tools:visibility="visible" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:orientation="vertical">
@@ -405,6 +387,24 @@
                             android:text="@string/uploadImg"
                             android:textColor="@color/com_facebook_button_background_color_focused"
                             tools:visibility="gone" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical">
+
+
+                        <Button
+                            android:id="@+id/signOutR"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/main_green"
+                            android:text="@string/sign_out"
+                            android:textColor="@color/com_facebook_button_background_color_focused"
+                            tools:visibility="visible" />
 
                     </LinearLayout>
 

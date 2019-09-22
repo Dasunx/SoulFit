@@ -186,7 +186,7 @@ public class ProfileActivity extends AppCompatActivity{
             @Override
             public boolean onLongClick(View view) {
                 longClickImg();
-               return true;
+                return true;
             }
         });
         profilePhoto.setOnClickListener(new View.OnClickListener() {
@@ -382,9 +382,7 @@ public class ProfileActivity extends AppCompatActivity{
         uploadProPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //uploadFile();
-                signOut(view);
-
+                uploadFile();
             }
         });
         loadWithGlide();
@@ -440,7 +438,7 @@ public class ProfileActivity extends AppCompatActivity{
         }
         // [START storage_load_with_glide]
         // Reference to an image file in Cloud Storage
-        Toast.makeText(this,uri1,Toast.LENGTH_LONG).show();
+
 
         // ImageView in your Activity
         // Download directly from StorageReference using Glide
@@ -459,7 +457,7 @@ public class ProfileActivity extends AppCompatActivity{
     private void uploadFile() {
         //checking if file is available
         if (filePath != null) {
-            Toast.makeText(this,filePath.toString(),Toast.LENGTH_LONG).show();
+
             //displaying progress dialog while image is uploading
             final ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Uploading");
@@ -540,7 +538,7 @@ public class ProfileActivity extends AppCompatActivity{
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case 0: uploadImage();
-                            break;
+                        break;
                     case 1:
                         deleteProPic();
                         break;
@@ -577,7 +575,6 @@ public class ProfileActivity extends AppCompatActivity{
 
 
 
-
     public void signOut() {
         mAuth.signOut();
         Intent myn = new Intent(this,Login.class);
@@ -590,12 +587,11 @@ public class ProfileActivity extends AppCompatActivity{
         Toast.makeText(getApplicationContext(),"Sucsess "+ name +" Deleted",Toast.LENGTH_LONG).show();
     }
 
-
     private void checkNull(){
         int mode= sp.getInt("mode",0);
         if(proEmail.getText().toString().trim().isEmpty()){
             if (mode==1){
-            emailSec.setVisibility(View.GONE);}
+                emailSec.setVisibility(View.GONE);}
         }
         if(phone.getText().toString().trim().isEmpty()){
             if (mode==1){
@@ -604,11 +600,11 @@ public class ProfileActivity extends AppCompatActivity{
         }
         if(fb.getText().toString().trim().isEmpty()){
             if (mode==1){
-            facebook.setVisibility(View.GONE);}
+                facebook.setVisibility(View.GONE);}
         }
         if(twt.getText().toString().trim().isEmpty()){
             if(mode==1){
-            twitterSec.setVisibility(View.GONE);}
+                twitterSec.setVisibility(View.GONE);}
         }
     }
 
