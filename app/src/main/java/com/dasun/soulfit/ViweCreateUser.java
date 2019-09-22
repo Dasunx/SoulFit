@@ -21,9 +21,7 @@ public class ViweCreateUser extends AppCompatActivity {
     ListView listviwecreateUser;
     DatabaseReference dbCuser;
 
-    ArrayList<String>arrayList=new ArrayList<>();
 
-    ArrayAdapter<String> arrayAdapter;
 
     List<User> userList;
 
