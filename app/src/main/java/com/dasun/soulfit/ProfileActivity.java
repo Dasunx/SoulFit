@@ -382,7 +382,9 @@ public class ProfileActivity extends AppCompatActivity{
         uploadProPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uploadFile();
+                //uploadFile();
+                signOut(view);
+
             }
         });
         loadWithGlide();
@@ -575,6 +577,7 @@ public class ProfileActivity extends AppCompatActivity{
 
 
 
+
     public void signOut() {
         mAuth.signOut();
         Intent myn = new Intent(this,Login.class);
@@ -586,6 +589,7 @@ public class ProfileActivity extends AppCompatActivity{
 
         Toast.makeText(getApplicationContext(),"Sucsess "+ name +" Deleted",Toast.LENGTH_LONG).show();
     }
+
 
     private void checkNull(){
         int mode= sp.getInt("mode",0);

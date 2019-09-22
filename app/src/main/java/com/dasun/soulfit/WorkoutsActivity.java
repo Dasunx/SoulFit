@@ -76,11 +76,6 @@ public class WorkoutsActivity extends AppCompatActivity {
 
         /*END - Showing single Row Db Burned Cals and Completed Workouts*/
 
-
-
-
-
-
         btn = findViewById(R.id.imageView5);
         burnedCal=findViewById(R.id.textViewCalBurned);
         workoutCounter=findViewById(R.id.TextViewDoneCount);
@@ -114,10 +109,8 @@ public class WorkoutsActivity extends AppCompatActivity {
                     Workout wkouts=new Workout(wId,wName, wMinD, wCalD);
                     workoutList.add(wkouts);
 
-
-
-
                 }
+
                 workoutAdapter=new WorkoutAdapter(WorkoutsActivity.this,workoutList);
                 recyclerView.setAdapter(workoutAdapter);
                 /*workout onclick event for update burned cals and completed workouts*/
@@ -143,10 +136,10 @@ public class WorkoutsActivity extends AppCompatActivity {
                         String sECount=Integer.toString(eCount);
                         workoutCounter.setText(sECount);
                         /*Date*/
-                /*
-                String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-                workoutCounter.setText(date);
-                */
+                        /*
+                        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+                        workoutCounter.setText(date);
+                        */
 
                         /*adding burned Cals and completed workouts to the db */
 
@@ -206,6 +199,7 @@ public class WorkoutsActivity extends AppCompatActivity {
         Intent next=new Intent(this,createWorkoutActivity.class);
         startActivity(next);
     }
+
     /*This function will show the update dialog box*/
     public void updateWorkout(final String workoutId, String workoutName){
         AlertDialog.Builder dialogBuilder=new AlertDialog.Builder(this);

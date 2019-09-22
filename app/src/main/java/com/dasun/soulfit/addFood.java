@@ -16,8 +16,10 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
-
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -43,8 +45,10 @@ public class addFood extends AppCompatActivity {
 
         //action bar and its title
         ActionBar actionBar = getSupportActionBar();
-
-
+        FirebaseAuth mAuth;
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser userx = mAuth.getCurrentUser();
+        Toast.makeText(this,userx.getUid().toString(),Toast.LENGTH_LONG).show();
         //add
 
         //Initialize views

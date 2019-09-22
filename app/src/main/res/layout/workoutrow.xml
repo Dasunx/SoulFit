@@ -47,6 +47,20 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewWorkoutTitle" />
 
     <TextView
+        android:id="@+id/textViewCalorieLabal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/crCalLabel"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewWorkoutContainer"
+        app:layout_constraintEnd_toStartOf="@+id/btnWorkout_add"
+        app:layout_constraintHorizontal_bias="0.032"
+        app:layout_constraintStart_toEndOf="@+id/textViewCalorie"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWorkoutTitle"
+        app:layout_constraintVertical_bias="0.363" />
+
+    <TextView
         android:id="@+id/textViewMinutes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,6 +70,19 @@
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/textViewWorkoutTitle"
         app:layout_constraintTop_toTopOf="@+id/imageViewWorkoutContainer" />
+
+    <TextView
+        android:id="@+id/textViewMinutesLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/crminslbl"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewWorkoutContainer"
+        app:layout_constraintEnd_toStartOf="@+id/btnWorkout_add"
+        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintStart_toEndOf="@+id/textViewMinutes"
+        app:layout_constraintTop_toTopOf="@+id/imageViewWorkoutContainer"
+        app:layout_constraintVertical_bias="0.333" />
 
     <Button
         android:id="@+id/btnWorkout_add"
