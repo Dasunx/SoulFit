@@ -22,12 +22,6 @@
                 android:background="@drawable/grad"
                 android:paddingBottom="20dp">
 
-                <Button
-                    android:id="@+id/verifyEmail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Button" />
-
                 <ImageView
                     android:id="@+id/btn_settings"
                     android:layout_width="40dp"
@@ -53,14 +47,19 @@
 
                     <ImageView
                         android:id="@+id/profilePic"
-                        android:layout_width="130dp"
-                        android:layout_height="130dp"
-                        android:layout_margin="9dp"
-                        android:adjustViewBounds="true"
+                        android:layout_width="145dp"
+                        android:layout_height="145dp"
+                        android:layout_marginStart="9dp"
+                        android:layout_marginTop="9dp"
+                        android:layout_marginEnd="9dp"
+
+                        android:layout_marginBottom="9dp"
                         android:background="@drawable/circle"
+                        android:cropToPadding="true"
                         android:padding="3dp"
                         android:scaleType="centerInside"
-                        android:src="@drawable/ic_userprofile" />
+                        android:src="@drawable/ic_propic" />
+
                 </RelativeLayout>
 
                 <TextView
@@ -85,13 +84,15 @@
                     android:fontFamily="sans-serif"
                     android:textColor="@color/dark_blue"
                     android:textSize="14sp" />
+
             </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/profile_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:visibility="visible">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -104,16 +105,19 @@
                     android:paddingBottom="5dp">
 
                     <LinearLayout
+                        android:id="@+id/callorieSec"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        tools:visibility="visible">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
-                            android:text="64.3 Kg"
+                            android:text="@string/trackYour"
+                            android:textAllCaps="true"
                             android:textColor="@color/white"
                             android:textSize="25sp" />
 
@@ -121,7 +125,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
-                            android:text="Weight"
+                            android:text="@string/Caloriestxt"
                             android:textAllCaps="true"
                             android:textColor="@color/white"
                             android:textSize="13sp" />
@@ -137,19 +141,23 @@
                     android:background="@color/main_green"
                     android:gravity="center"
                     android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
+                    android:paddingBottom="5dp"
+                    android:visibility="visible">
 
                     <LinearLayout
+                        android:id="@+id/workoutSec"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        tools:visibility="visible">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
-                            android:text="182 cm"
+                            android:text="@string/viewwork"
+                            android:textAllCaps="true"
                             android:textColor="@color/white"
                             android:textSize="25sp" />
 
@@ -157,7 +165,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
-                            android:text="Height"
+                            android:text="@string/cr_workouts_txtView"
                             android:textAllCaps="true"
                             android:textColor="@color/white"
                             android:textSize="13sp" />
@@ -224,7 +232,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Email"
+                            android:text="@string/secondEmail"
                             android:textColor="@color/main_green"
                             android:textSize="13sp" />
 
@@ -348,7 +356,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="15dp"
                         android:orientation="vertical">
 
@@ -360,7 +368,43 @@
                             android:background="@color/main_green"
                             android:text="@string/saveProfile"
                             android:textColor="@color/com_facebook_button_background_color_focused"
-                            tools:visibility="invisible" />
+                            tools:visibility="gone" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical">
+
+
+                        <Button
+                            android:id="@+id/signOutR"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/main_green"
+                            android:text="@string/sign_out"
+                            android:textColor="@color/com_facebook_button_background_color_focused"
+                            tools:visibility="visible" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical">
+
+
+                        <Button
+                            android:id="@+id/verifyEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/main_green"
+                            android:text="@string/uploadImg"
+                            android:textColor="@color/com_facebook_button_background_color_focused"
+                            tools:visibility="gone" />
 
                     </LinearLayout>
 
