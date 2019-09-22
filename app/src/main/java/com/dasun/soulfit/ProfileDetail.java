@@ -8,6 +8,16 @@ public class ProfileDetail {
     private String fb;
     private String twitter;
 
+    public String getProPic() {
+        return proPic;
+    }
+
+    public void setProPic(String proPic) {
+        this.proPic = proPic;
+    }
+
+    private String proPic;
+
     public String getTwitter() {
         return twitter;
     }
