@@ -118,7 +118,7 @@ public class WorkoutsActivity extends AppCompatActivity {
                     @Override
                     public void onWorkoutItemClick(int position) {
                         Workout wkfromDb=workoutList.get(position);
-                        updateWorkout(wkfromDb.getWorkoutId(),wkfromDb.getName());
+                        updateWorkout(wkfromDb.getWorkoutId(),wkfromDb.getName(),wkfromDb.getCalorie(),wkfromDb.getMinute());
                     }
 
                     @Override
@@ -201,7 +201,7 @@ public class WorkoutsActivity extends AppCompatActivity {
     }
 
     /*This function will show the update dialog box*/
-    public void updateWorkout(final String workoutId, String workoutName){
+    public void updateWorkout(final String workoutId, String workoutName, double cal, double min){
         AlertDialog.Builder dialogBuilder=new AlertDialog.Builder(this);
         LayoutInflater inflater=getLayoutInflater();
         final View dialogView=inflater.inflate(R.layout.update_dialog,null);
@@ -213,7 +213,12 @@ public class WorkoutsActivity extends AppCompatActivity {
         final Button btnUpdate=dialogView.findViewById(R.id.btn_w_update);
         final Button btnDelete=dialogView.findViewById(R.id.btn_w_delete);
 
-        dialogBuilder.setTitle("updating  "+workoutName);
+        dialogBuilder.setTitle("Update  "+workoutName);
+
+        edTxtUpdateCals.setText(String.valueOf(cal));
+        edTxtUpdateMinute.setText(String.valueOf(min));
+        edTxtUpdateName.setText(workoutName);
+
         final AlertDialog alertDialog=dialogBuilder.create();
         alertDialog.show();
 
