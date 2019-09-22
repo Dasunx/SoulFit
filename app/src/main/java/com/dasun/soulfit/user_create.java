@@ -1,10 +1,13 @@
 package com.dasun.soulfit;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
+
+import android.widget.Spinner;
 import android.widget.Toast;
 
 
@@ -16,45 +19,65 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class user_create extends AppCompatActivity {
     EditText Birthday;
-    RadioButton male;
-    RadioButton female;
+    Spinner gender;
     EditText height;
     EditText weight;
     Button submit;
 
-    DatabaseReference dbref;
-    User user1;
+    DatabaseReference dbCuser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_create);
 
-        Birthday =findViewById(R.id.Birthday);
-        male =  findViewById(R.id.male);
-        female =  findViewById(R.id.female);
-        height =  findViewById(R.id.height);
-        weight =  findViewById(R.id.weight);
+        dbCuser = FirebaseDatabase.getInstance().getReference("User");
 
-        submit = findViewById(R.id.submit);
+        Birthday =(EditText) findViewById(R.id.Birthday);
+        gender = (Spinner)findViewById(R.id.spinnergender);
+        height =  (EditText)findViewById(R.id.height);
+        weight =  (EditText)findViewById(R.id.weight);
 
-        user1 = new User();
+        submit = (Button) findViewById(R.id.submit);
+
+
 
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dbref = FirebaseDatabase.getInstance().getReference().child("User");
-                user1.setBirthday(Birthday.getText().toString().trim());
-                user1.setFemale(female.getText().toString().trim());
-                user1.setMale(male.getText().toString().trim());
-                user1.setHeight(height.getText().toString().trim());
-                user1.setWeight(weight.getText().toString().trim());
 
-                dbref.push().setValue(user1);
-                Toast.makeText(getApplicationContext(),"Sucsess",Toast.LENGTH_LONG);
+                newpage();
+
+                addUDetails();
+
+
 
             }
         });
+    }
+    private void newpage(){
+        Intent s = new Intent(this,ViweCreateUser.class);
+        startActivity(s);
+    }
+    private void addUDetails(){
+        String birthday = Birthday.getText().toString().trim();
+        String Gender = gender.getSelectedItem().toString();
+        String Height = height.getText().toString().trim();
+        String Weight = weight.getText().toString().trim();
+
+        if (!TextUtils.isEmpty(birthday)){
+
+            String id = dbCuser.push().getKey();
+
+            User user = new User(birthday,Gender,id,Height,Weight);
+
+            dbCuser.child(id).setValue(user);
+
+            Toast.makeText(this,"Successfully add",Toast.LENGTH_LONG).show();
+
+        }else {
+            Toast.makeText(this,"You should enter Birthday",Toast.LENGTH_LONG).show();
+        }
     }
 }

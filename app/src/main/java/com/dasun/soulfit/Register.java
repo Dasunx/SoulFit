@@ -137,6 +137,7 @@ public class Register extends BaseActivity implements View.OnClickListener{
         int i = v.getId();
         if (i == R.id.btn_register) {
             createAccount(mRegEmailField.getText().toString(), mRegPasswordField.getText().toString());
+
         }
     }
 }

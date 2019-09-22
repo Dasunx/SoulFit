@@ -1,32 +1,348 @@
 package com.dasun.soulfit;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
-public class ProfileActivity extends AppCompatActivity {
-
-    TextView profileName;
+public class ProfileActivity extends AppCompatActivity{
+    SharedPreferences sp;
+    TextView name;
+    EditText profileName;
+    EditText proEmail;
+    EditText phone;
+    EditText fb,twt;
+    Button save;
+    Button signout;
+    ImageView settings;
+    LinearLayout weight;
+    LinearLayout facebook;
+    LinearLayout namesec;
+    LinearLayout twitterSec;
+    LinearLayout phoneSec;
+    LinearLayout emailSec;
     private FirebaseAuth mAuth;
+    DatabaseReference mDatabase;
+    ProfileDetail newPro;
+    static int key =1;
+    TextView primaryMail;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
+        FirebaseUser userx = mAuth.getCurrentUser();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("profileDetails").child(userx.getUid());
 
-        profileName = findViewById(R.id.profile_name);
-        profileName.setText(user.getEmail());
+        sp= getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+        int detailsAdded;
+
+        SharedPreferences.Editor spEdit= sp.edit();
+        spEdit.putInt("mode",1);
+        spEdit.commit();
+
+        name = findViewById(R.id.profile_name);
+
+        profileName = findViewById(R.id.Editname);
+        proEmail = findViewById(R.id.secEmail);
+        phone = findViewById(R.id.phonenumber);
+        fb = findViewById(R.id.fburl);
+        twt = findViewById(R.id.profileTwitter);
+        weight = findViewById(R.id.profile_details);
+        save = findViewById(R.id.SaveProfile);
+        signout=findViewById(R.id.verifyEmail);
+        settings = findViewById(R.id.btn_settings);
+        facebook = findViewById(R.id.profilefacebook);
+        namesec = findViewById(R.id.nameSection);
+        emailSec = findViewById(R.id.emailSection);
+        phoneSec = findViewById(R.id.phoneSection);
+        twitterSec = findViewById(R.id.twitterSection);
+        primaryMail = findViewById(R.id.profile_desc);
+        primaryMail.setText(userx.getEmail().toString());
+        newPro = new ProfileDetail();
+
+        if(key==1){
+            detailsAdded=1;
+        }else {
+            detailsAdded=0;
+        }
+
+        if(detailsAdded==1){
+            save.setVisibility(View.GONE);
+            profileName.setClickable(false);
+            proEmail.setClickable(false);
+            phone.setClickable(false);
+            fb.setClickable(false);
+            profileName.setFocusable(false);
+            proEmail.setFocusable(false);
+            phone.setFocusable(false);
+            fb.setFocusable(false);
+
+            mDatabase.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    ProfileDetail oldPro = dataSnapshot.getValue(ProfileDetail.class);
+                    if(oldPro!=null){
+                        String dN=oldPro.getDisplayName();
+                        String Email=oldPro.getSecondaryEmail();
+                        String phn=oldPro.getPhone();
+                        String fbu=oldPro.getFb();
+                        String twitter = oldPro.getTwitter();
+                        if(dN !=null){
+                            profileName.setText(dN);
+                            name.setText(dN);
+                        }
+                        if(Email!=null){
+                            proEmail.setText(Email);
+                        }
+                        if(phn!=null){
+                            phone.setText(phn);
+                        }if(twitter!=null){
+                            twt.setText(twitter);
+                        }
+                        if(fbu!=null){
+                            fb.setText(fbu);
+                        }
+                    }
+                    checkNull();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    checkNull();
+                }
+            });
+        }
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                weight.setVisibility(View.VISIBLE);
+                newPro.setUid(userx.getUid().toString().trim());
+                newPro.setDisplayName(profileName.getText().toString().trim());
+                newPro.setSecondaryEmail(proEmail.getText().toString().trim());
+                newPro.setPhone(phone.getText().toString().trim());
+                newPro.setFb(fb.getText().toString().trim());
+                newPro.setTwitter(twt.getText().toString().trim());
+                mDatabase.setValue(newPro);
+
+                SharedPreferences.Editor spEdit= sp.edit();
+                spEdit.putInt("details",1);
+                spEdit.putInt("mode",1);
+                spEdit.commit();
+                save.setVisibility(View.GONE);
+                save.setVisibility(View.GONE);
+                profileName.setClickable(false);
+                proEmail.setClickable(false);
+                phone.setClickable(false);
+                fb.setClickable(false);
+                profileName.setFocusable(false);
+                proEmail.setFocusable(false);
+                phone.setFocusable(false);
+                fb.setFocusable(false);
+                profileName.setFocusableInTouchMode(false);
+                proEmail.setFocusableInTouchMode(false);
+                phone.setFocusableInTouchMode(false);
+                fb.setFocusableInTouchMode(false);
+                twt.setClickable(false);
+                twt.setFocusable(false);
+                twt.setFocusableInTouchMode(false);
+                twt.setOnTouchListener(null);
+                proEmail.setOnTouchListener(null);
+                phone.setOnTouchListener(null);
+                fb.setOnTouchListener(null);
+
+
+                twt.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+                proEmail.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+                phone.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+                fb.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+                checkNull();
+            }
+        });
+
+        settings.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                save.setVisibility(View.VISIBLE);
+                weight.setVisibility(View.GONE);
+
+                profileName.setClickable(true);
+                proEmail.setClickable(true);
+                phone.setClickable(true);
+                fb.setClickable(true);
+                profileName.setFocusable(true);
+                proEmail.setFocusable(true);
+                phone.setFocusable(true);
+                fb.setFocusable(true);
+                profileName.setFocusableInTouchMode(true);
+                proEmail.setFocusableInTouchMode(true);
+                phone.setFocusableInTouchMode(true);
+                fb.setFocusableInTouchMode(true);
+                twt.setClickable(true);
+                twt.setFocusable(true);
+                twt.setFocusableInTouchMode(true);
+
+                twt.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_delete,0);
+                proEmail.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_delete,0);
+                phone.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_delete,0);
+                fb.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_delete,0);
+
+                facebook.setVisibility(View.VISIBLE);
+                twitterSec.setVisibility(View.VISIBLE);
+                emailSec.setVisibility(View.VISIBLE);
+                phoneSec.setVisibility(View.VISIBLE);
+                SharedPreferences.Editor spEdit= sp.edit();
+                spEdit.putInt("mode",0);
+                spEdit.commit();
+
+                int mode= sp.getInt("mode",0);
+                if(mode==0){
+                    twt.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View view, MotionEvent event) {
+                            final int DRAWABLE_LEFT = 0;
+                            final int DRAWABLE_TOP = 1;
+                            final int DRAWABLE_RIGHT = 2;
+                            final int DRAWABLE_BOTTOM = 3;
+                            if(mode==0){
+                                if(event.getAction() == MotionEvent.ACTION_UP) {
+                                    if(event.getRawX() >= (twt.getRight() - twt.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+
+                                        removeChild("twitter");
+                                        return true;
+                                    }
+                                }
+                            }
+
+                            return false;
+                        }
+                    });
+                    proEmail.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View view, MotionEvent event) {
+                            final int DRAWABLE_LEFT = 0;
+                            final int DRAWABLE_TOP = 1;
+                            final int DRAWABLE_RIGHT = 2;
+                            final int DRAWABLE_BOTTOM = 3;
+
+                            if(mode==0){
+                                if(event.getAction() == MotionEvent.ACTION_UP) {
+                                    if(event.getRawX() >= (proEmail.getRight() - proEmail.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+
+                                        removeChild("secondaryEmail");
+                                        return true;
+                                    }
+                                }
+                            }
+                            return false;
+                        }
+                    });
+                    phone.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View view, MotionEvent event) {
+                            final int DRAWABLE_LEFT = 0;
+                            final int DRAWABLE_TOP = 1;
+                            final int DRAWABLE_RIGHT = 2;
+                            final int DRAWABLE_BOTTOM = 3;
+
+                            if(mode==0){
+                                if(event.getAction() == MotionEvent.ACTION_UP) {
+                                    if(event.getRawX() >= (phone.getRight() - phone.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+
+                                        removeChild("phone");
+                                        return true;
+                                    }
+                                }
+                            }
+                            return false;
+                        }
+                    });
+                    fb.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View view, MotionEvent event) {
+                            final int DRAWABLE_LEFT = 0;
+                            final int DRAWABLE_TOP = 1;
+                            final int DRAWABLE_RIGHT = 2;
+                            final int DRAWABLE_BOTTOM = 3;
+
+                            if(event.getAction() == MotionEvent.ACTION_UP) {
+                                if(event.getRawX() >= (fb.getRight() - fb.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+
+                                    removeChild("fb");
+                                    return true;
+                                }
+                            }
+                            return false;
+                        }
+                    });
+                }
+
+
+            }
+        });
+        signout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signOut();
+            }
+        });
 
     }
+    public void signOut() {
+        Intent myn = new Intent(this,WorkoutsActivity.class);
+        startActivity(myn);
+    }
+
+    private void removeChild(String name){
+        mDatabase.child(name).setValue("");
+
+        Toast.makeText(getApplicationContext(),"Sucsess "+ name +" Deleted",Toast.LENGTH_LONG).show();
+    }
+
+    private void checkNull(){
+        int mode= sp.getInt("mode",0);
+        if(proEmail.getText().toString().trim().isEmpty()){
+            if (mode==1){
+            emailSec.setVisibility(View.GONE);}
+        }
+        if(phone.getText().toString().trim().isEmpty()){
+            if (mode==1){
+                phoneSec.setVisibility(View.GONE);
+            }
+        }
+        if(fb.getText().toString().trim().isEmpty()){
+            if (mode==1){
+            facebook.setVisibility(View.GONE);}
+        }
+        if(twt.getText().toString().trim().isEmpty()){
+            if(mode==1){
+            twitterSec.setVisibility(View.GONE);}
+        }
+    }
+
 }
