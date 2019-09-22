@@ -25,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -50,7 +51,8 @@ public class ProfileActivity extends AppCompatActivity{
     EditText phone;
     EditText fb,twt;
     Button save;
-    Button signout;
+    Button uploadProPic;
+    Button signoutuser;
     ImageView settings;
     ImageView profilePhoto;
     LinearLayout weight;
@@ -67,6 +69,8 @@ public class ProfileActivity extends AppCompatActivity{
     static String uri1;
     private static final int PICK_IMAGE_REQUEST = 234;
     private Uri filePath;
+    LinearLayout workout;
+    LinearLayout callorie;
 
     //firebase objects
     private StorageReference storageReference;
@@ -78,6 +82,7 @@ public class ProfileActivity extends AppCompatActivity{
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser userx = mAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("profileDetails").child(userx.getUid());
+
 
         sp= getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         int detailsAdded;
@@ -97,7 +102,7 @@ public class ProfileActivity extends AppCompatActivity{
         twt = findViewById(R.id.profileTwitter);
         weight = findViewById(R.id.profile_details);
         save = findViewById(R.id.SaveProfile);
-        signout=findViewById(R.id.verifyEmail);
+        uploadProPic=findViewById(R.id.verifyEmail);
         settings = findViewById(R.id.btn_settings);
         facebook = findViewById(R.id.profilefacebook);
         namesec = findViewById(R.id.nameSection);
@@ -107,6 +112,9 @@ public class ProfileActivity extends AppCompatActivity{
         primaryMail = findViewById(R.id.profile_desc);
         profilePhoto = findViewById(R.id.profilePic);
         primaryMail.setText(userx.getEmail().toString());
+        signoutuser = findViewById(R.id.signOutR);
+        workout = findViewById(R.id.workoutSec);
+        callorie = findViewById(R.id.callorieSec);
         newPro = new ProfileDetail();
 
 
@@ -119,6 +127,7 @@ public class ProfileActivity extends AppCompatActivity{
 
         if(detailsAdded==1){
             save.setVisibility(View.GONE);
+            uploadProPic.setVisibility(View.GONE);
             profileName.setClickable(false);
             proEmail.setClickable(false);
             phone.setClickable(false);
@@ -166,12 +175,18 @@ public class ProfileActivity extends AppCompatActivity{
                 }
             });
         }
+        signoutuser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signOut();
+            }
+        });
 
         profilePhoto.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 longClickImg();
-               return true;
+                return true;
             }
         });
         profilePhoto.setOnClickListener(new View.OnClickListener() {
@@ -182,9 +197,23 @@ public class ProfileActivity extends AppCompatActivity{
             }
         });
 
+        workout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                workoutTO();
+            }
+        });
+
+        callorie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callorieTo();
+            }
+        });
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                uploadProPic.setVisibility(View.GONE);
 
                 weight.setVisibility(View.VISIBLE);
                 newPro.setUid(userx.getUid().toString().trim());
@@ -350,21 +379,30 @@ public class ProfileActivity extends AppCompatActivity{
 
             }
         });
-        signout.setOnClickListener(new View.OnClickListener() {
+        uploadProPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //uploadFile();
-                signOut(view);
-
+                uploadFile();
             }
         });
         loadWithGlide();
         loadWithGlide();
     }
 
+    private void callorieTo() {
+        Intent m = new Intent(this,addFood.class);
+        startActivity(m);
+    }
+
+    private void workoutTO() {
+        Intent m = new Intent(this,WorkoutsActivity.class);
+        startActivity(m);
+    }
+
     private void showFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
+        uploadProPic.setVisibility(View.VISIBLE);
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
@@ -395,16 +433,19 @@ public class ProfileActivity extends AppCompatActivity{
                 // Handle any errors
             }
         });
+        if(uri1==null){
+            uri1="https://firebasestorage.googleapis.com/v0/b/soulfit-f30c3.appspot.com/o/images%2Fdefault.jpg?alt=media&token=b979478a-6f9e-430a-84f6-a739594618af";
+        }
         // [START storage_load_with_glide]
         // Reference to an image file in Cloud Storage
-        Toast.makeText(this,uri1,Toast.LENGTH_LONG).show();
+
 
         // ImageView in your Activity
         // Download directly from StorageReference using Glide
         // (See MyAppGlideModule for Loader registration)
         GlideApp.with(this /* context */)
                 .load(uri1)
-                .into(profilePhoto);
+                .apply(RequestOptions.circleCropTransform()).into(profilePhoto);
         // [END storage_load_with_glide]
     }
 
@@ -416,7 +457,7 @@ public class ProfileActivity extends AppCompatActivity{
     private void uploadFile() {
         //checking if file is available
         if (filePath != null) {
-            Toast.makeText(this,filePath.toString(),Toast.LENGTH_LONG).show();
+
             //displaying progress dialog while image is uploading
             final ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Uploading");
@@ -435,11 +476,12 @@ public class ProfileActivity extends AppCompatActivity{
 
 
                             //displaying success toast
-                            Toast.makeText(getApplicationContext(), "File Uploaded ", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Profile Photo Uploaded ", Toast.LENGTH_LONG).show();
 
                             //creating the upload object to store uploaded image details
-                            ProfileDetail upload = new ProfileDetail();
                             mDatabase.child("profilePic").setValue(uri1);
+                            uploadProPic.setVisibility(View.GONE);
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -483,6 +525,7 @@ public class ProfileActivity extends AppCompatActivity{
         showFileChooser();
         uploadFile();
         loadWithGlide();
+        loadWithGlide();
     }
 
     private void longClickImg() {
@@ -495,7 +538,7 @@ public class ProfileActivity extends AppCompatActivity{
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case 0: uploadImage();
-                            break;
+                        break;
                     case 1:
                         deleteProPic();
                         break;
@@ -508,12 +551,33 @@ public class ProfileActivity extends AppCompatActivity{
     }
 
     private void deleteProPic() {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        // Create a storage reference from our app
+        StorageReference storageRef = storage.getReference();
+
+// Create a reference to the file to delete
+        StorageReference desertRef = storageRef.child("images/"+mAuth.getCurrentUser().getUid()+".jpg");
+
+// Delete the file
+        desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                removeChild("profilePic");
+                loadWithGlide();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Uh-oh, an error occurred!
+            }
+        });
     }
 
 
 
-    public void signOut(View v) {
-        Intent myn = new Intent(this,WorkoutsActivity.class);
+    public void signOut() {
+        mAuth.signOut();
+        Intent myn = new Intent(this,Login.class);
         startActivity(myn);
     }
 
@@ -523,12 +587,11 @@ public class ProfileActivity extends AppCompatActivity{
         Toast.makeText(getApplicationContext(),"Sucsess "+ name +" Deleted",Toast.LENGTH_LONG).show();
     }
 
-
     private void checkNull(){
         int mode= sp.getInt("mode",0);
         if(proEmail.getText().toString().trim().isEmpty()){
             if (mode==1){
-            emailSec.setVisibility(View.GONE);}
+                emailSec.setVisibility(View.GONE);}
         }
         if(phone.getText().toString().trim().isEmpty()){
             if (mode==1){
@@ -537,11 +600,11 @@ public class ProfileActivity extends AppCompatActivity{
         }
         if(fb.getText().toString().trim().isEmpty()){
             if (mode==1){
-            facebook.setVisibility(View.GONE);}
+                facebook.setVisibility(View.GONE);}
         }
         if(twt.getText().toString().trim().isEmpty()){
             if(mode==1){
-            twitterSec.setVisibility(View.GONE);}
+                twitterSec.setVisibility(View.GONE);}
         }
     }
 

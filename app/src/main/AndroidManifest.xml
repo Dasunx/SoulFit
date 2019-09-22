@@ -20,7 +20,6 @@
 
         </activity>
         <activity android:name=".addFood" />
-        <activity android:name=".ViweCreateUser"></activity>
 
         <activity android:name=".Register" />
         <activity android:name=".Login" />

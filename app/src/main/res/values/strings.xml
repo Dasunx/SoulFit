@@ -126,6 +126,10 @@
     <string name="cr_create_workout_btn">Create</string>
     <string name="cr_delete">delete</string>
     <string name="cr_update">update</string>
+    <string name="uploadImg">Upload</string>
+    <string name="secondEmail">Secondary Email</string>
+    <string name="trackYour">Track my</string>
+    <string name="viewwork">View my</string>
 
     <string name="crCalLabel">calories</string>
     <string name="crminslbl">mins</string>
@@ -133,6 +137,5 @@
     <string name="upsave">save</string>
     <string name="Upheight">Height</string>
     <string name="Upweight">Weight</string>
-
 
 </resources>
