@@ -9,9 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".Update_create_User"></activity>
         <activity android:name=".list_layoutcR" />
         <activity android:name=".ViweCreateUser" />
+
+        <activity android:name=".showList">
+            
+        </activity>
+        <activity android:name=".addFood" />
+        <activity android:name=".ViweCreateUser"></activity>
+
         <activity android:name=".Register" />
         <activity android:name=".Login" />
         <activity android:name=".Navigation" />
@@ -24,13 +32,15 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
+<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+      </activity>
         <activity android:name=".Welcome" />
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
