@@ -19,3 +19,7 @@ Soulfit will help you to track your daily calorie intake.
 **Sample calorie input**
 
 <a href="https://imgur.com/OKnh2bb"><img src="https://i.imgur.com/OKnh2bb.jpg" title="source: imgur.com" width=300/></a>
+
+**Workout screen**
+
+<a href="https://i.imgur.com/300qfOi"><img src="https://i.imgur.com/300qfOi.jpg" title="source: imgur.com" width=300/></a>
